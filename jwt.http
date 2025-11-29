@@ -64,3 +64,10 @@ Content-Type: application/json
 {
     "weaknesses": ["5","d"]
 }
+
+###
+DELETE http://localhost:3000/user/profile/delete_weakness/d
+Authorization: Bearer {{token}}
+###
+DELETE http://localhost:3000/user/profile/delete_strength/c
+Authorization: Bearer {{token}}

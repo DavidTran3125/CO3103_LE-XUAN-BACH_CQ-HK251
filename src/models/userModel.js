@@ -98,6 +98,23 @@ exports.add_strength_DB =async (id,strengths=[])=>{
         throw err;
     }
 }
+exports.delete_strength_DB =async (id,strength)=>{
+    const pool = await connectDB();
+    try {
+        
+        const stringsql = `
+            delete from Profile_Strength where User_ID = @id and Strength= @strength`
+        
+        await pool.request()
+            .input('id',sql.Int,id)
+            .input('strength',sql.NVarChar,strength)
+            .query(stringsql);
+        return  ;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
 
 exports.add_weakness_DB =async (id,weaknesses=[])=>{
     const pool = await connectDB();
@@ -121,6 +138,24 @@ exports.add_weakness_DB =async (id,weaknesses=[])=>{
         return  ;
     } catch (err) {
         await transaction.rollback();
+        console.log(err);
+        throw err;
+    }
+}
+
+exports.delete_weakness_DB =async (id,weakness)=>{
+    const pool = await connectDB();
+    try {
+        
+        const stringsql = `
+            delete from Profile_Weakness where User_ID = @id and Weakness= @weakness`
+        
+        await pool.request()
+            .input('id',sql.Int,id)
+            .input('weakness',sql.NVarChar,weakness)
+            .query(stringsql);
+        return  ;
+    } catch (err) {
         console.log(err);
         throw err;
     }

@@ -7,5 +7,7 @@ module.exports = (app)=>{
     app.delete('/user/profile/delete_bio',verify_token,usercontroller.delete_user_bio);
     app.post('/user/profile/add_strengths',verify_token,usercontroller.add_strength);
     app.post('/user/profile/add_weaknesses',verify_token,usercontroller.add_weakness);
-
+    app.delete('/user/profile/delete_strength/:strength',verify_token,usercontroller.delete_strength);
+    app.delete('/user/profile/delete_weakness/:weakness',verify_token,usercontroller.delete_weakness);
+    
 }

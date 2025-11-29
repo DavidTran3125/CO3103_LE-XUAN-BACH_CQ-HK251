@@ -73,6 +73,24 @@ exports.add_strength = async (req,res)=>{
     }
 }
 
+exports.delete_strength = async (req,res)=>{
+    try {
+        const id= req.user.id;
+        const strength= req.params.strength
+
+        if(strength===null) res.status(401).json({message:"ko co gi xoa"})
+
+        await usermodel.delete_strength_DB(id,strength);
+        const result=await usermodel.get_strengths(id);
+        res.json({message:"delete success",
+            strengths: result.map(s => s.Strength)
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({error:err.message})
+    }
+}
+
 
 exports.add_weakness = async (req,res)=>{
     try {
@@ -84,6 +102,24 @@ exports.add_weakness = async (req,res)=>{
         await usermodel.add_weakness_DB(id,weaknesses);
         const result=await usermodel.get_weakness(id);
         res.json({message:"add success",
+            weaknesses: result.map(s => s.Weakness)
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({error:err.message})
+    }
+}
+
+exports.delete_weakness = async (req,res)=>{
+    try {
+        const id= req.user.id;
+        const weakness= req.params.weakness
+
+        if(weakness===null) res.status(401).json({message:"ko co gi xoa"})
+
+        await usermodel.delete_weakness_DB(id,weakness);
+        const result=await usermodel.get_weakness(id);
+        res.json({message:"delete success",
             weaknesses: result.map(s => s.Weakness)
         });
     } catch (err) {

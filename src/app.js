@@ -8,7 +8,7 @@ app.use(cors())
 app.use(express.json());  
 
 app.get('',(req,res)=>{
-        res.send("huyyy")
+        res.send("hello world")
 })
 
 require('./routers/authRouter')(app);
