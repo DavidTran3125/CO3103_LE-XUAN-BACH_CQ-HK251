@@ -18,8 +18,9 @@ exports.login = async (req,res)=>{
 
         const token = jwt.sign({ username: user.Username, id: user.User_ID}, SECRET, { expiresIn: '30m' });
 
-        res.json({a:'dang nhap thanh cong',
-            accesstoken:token
+        res.json({mesage:'dang nhap thanh cong',
+            accesstoken:token,
+            id:user.User_ID
         });
     } catch (err) {
         res.status(500).json({error: err.message});
@@ -30,7 +31,7 @@ exports.signup = async (req,res)=>{
     try {
         const {username,password}=req.body;
         await authmodel.add_user(username,password);
-        res.json('success');
+        res.json({message:"success"});
     } catch (err) {
         res.status(500).json({error: err.message}); 
     }

@@ -4,9 +4,9 @@ exports.get_profile = async (req,res)=>{
     try {
 
         const id=parseInt(req.params.id,10);
-        if (isNaN(id)) return res.status(400).json({ error: 'Invalid id' });
+        if (isNaN(id)) return res.status(400).json({ message: 'Invalid id' });
         const result= await usermodel.get_profile(id);
-        if(!result) return res.status(404).json({error:'User not found'});
+        if(!result) return res.status(404).json({message:'User not found'});
 
         const strengths= await usermodel.get_strengths(id);
         // result.strengths = strengths.length ===0 ? []: strengths.map(s => s.Strength);
