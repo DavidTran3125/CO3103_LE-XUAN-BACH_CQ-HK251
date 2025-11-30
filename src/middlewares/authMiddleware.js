@@ -7,12 +7,12 @@ exports.verify_token = (req,res,next)=>{
     try {
         const authHeader = req.headers['authorization'];
         if (!authHeader) {
-            return res.status(401).json({ message: 'No token provided' });
+            return res.status(401).json({status:"fail", message: 'No token provided' });
         }
 
         const token = authHeader.split(' ')[1];
         if (!token) {
-            return res.status(401).json({ message: 'Invalid token format' });
+            return res.status(401).json({status:"fail", message: 'Invalid token format' });
         }
 
         const payload  = jwt.verify(token, SECRET);
@@ -20,7 +20,7 @@ exports.verify_token = (req,res,next)=>{
         
         next(); 
     } catch (err) {
-        return res.status(401).json({ message: 'Unauthorized or token expired' });
+        return res.status(401).json({status:"fail", message: 'Unauthorized or token expired' });
     }
     
 

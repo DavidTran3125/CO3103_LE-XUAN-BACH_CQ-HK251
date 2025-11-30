@@ -1,6 +1,7 @@
 # @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1eWh1eWh1eSIsImlkIjo0LCJpYXQiOjE3NjQzNDA4MTksImV4cCI6MTc2NDM0MjYxOX0.hC0Z6i1FeB7zXWbUrjpamsIU44_4gOUBOj6QmqbhrYs
 
-@token = {{login.response.body.accesstoken}}
+@token = {{login.response.body.token}}
+@id=4
 ###
 # @name login
 POST http://localhost:3000/login
@@ -32,32 +33,29 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/user/profile/4
+GET http://localhost:3000/users/{{id}}
 Authorization: Bearer {{token}}
 ###
-PUT http://localhost:3000/user/profile/update_bio
-Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
-    "bio":"addd"
-}
-
-###
-delete http://localhost:3000/user/profile/delete_bio
-Authorization: Bearer {{token}}
-###
-
-POST  http://localhost:3000/user/profile/add_strengths
+PUT http://localhost:3000/users/{{id}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "strengths": ["6","y"]
+    "about":""
 }
 
 ###
-POST  http://localhost:3000/user/profile/add_weaknesses
+
+POST  http://localhost:3000/users/{{id}}/strengths
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "strengths": ["6","8"]
+}
+
+###
+POST  http://localhost:3000/users/{{id}}/weaknesses
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -66,8 +64,18 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/user/profile/delete_weakness/d
+
+GET  http://localhost:3000/users/{{id}}/strengths
 Authorization: Bearer {{token}}
 ###
-DELETE http://localhost:3000/user/profile/delete_strength/c
+
+GET http://localhost:3000/users/{{id}}/weaknesses
+Authorization: Bearer {{token}}
+
+###
+DELETE http://localhost:3000/users/{{id}}/strengths/a
+Authorization: Bearer {{token}}
+
+###
+DELETE http://localhost:3000/users/{{id}}/weaknesses/d
 Authorization: Bearer {{token}}

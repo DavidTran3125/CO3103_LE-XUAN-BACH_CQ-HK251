@@ -4,7 +4,7 @@ exports.get_profile = async (id)=>{
     try {
         const pool = await connectDB();
         const stringsql = `
-            select User_ID, Username ,Bio
+            select *
             from User_Profile u 
             where u.User_ID = @id`
         const result= await pool.request()
