@@ -25,7 +25,7 @@ exports.get_profile = async (req,res)=>{
                 userID:result.User_ID,
                 username:result.Username,
                 about:result.Bio || "",
-                createdAt:result.Created_at
+                createdAt:result.Created_at.toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })
             }
         })
     } catch (err) {
