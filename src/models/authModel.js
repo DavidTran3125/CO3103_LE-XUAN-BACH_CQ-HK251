@@ -11,7 +11,7 @@ exports.getall_user= async () => {
         return result.recordset;
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         throw error
     }
 }
@@ -27,7 +27,7 @@ exports.get_user= async (name) => {
         return result.recordset;
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         throw error
     }
 }
@@ -42,7 +42,7 @@ exports.add_user = async (name,pass) =>{
             .input('pass',sql.NVarChar,pass)
             .query(stringsql);
     } catch (err) {
-        console.log(err)
+        // console.log(err)
         throw err
     }
 }
@@ -59,7 +59,7 @@ exports.get_groupid = async (userid) => {
             .query(stringsql);
         return listid.recordset;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }

@@ -42,3 +42,6 @@ io.on("connection", (socket) => {
 
 module.exports = chatserver;
 
+// chatserver.listen(4000, '0.0.0.0' ,() =>{
+//         console.log(` chatServer running on port ${4000}`);
+//     });

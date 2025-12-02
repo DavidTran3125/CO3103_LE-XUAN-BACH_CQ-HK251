@@ -12,7 +12,7 @@ exports.get_profile = async (id)=>{
             .query(stringsql);
         return result.recordset[0] || null;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -29,7 +29,7 @@ exports.get_strengths =async (id)=>{
             .query(stringsql);
         return result.recordset ;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -46,7 +46,7 @@ exports.get_weakness =async (id)=>{
             .query(stringsql);
         return result.recordset ;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -66,7 +66,7 @@ exports.update_profile_DB =async (id,bio=null)=>{
             .query(stringsql);
         return ;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -94,7 +94,7 @@ exports.add_strength_DB =async (id,strengths=[])=>{
         return  ;
     } catch (err) {
         await transaction.rollback();
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -111,7 +111,7 @@ exports.delete_strength_DB =async (id,strength)=>{
             .query(stringsql);
         return  ;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -138,7 +138,7 @@ exports.add_weakness_DB =async (id,weaknesses=[])=>{
         return  ;
     } catch (err) {
         await transaction.rollback();
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }
@@ -156,7 +156,7 @@ exports.delete_weakness_DB =async (id,weakness)=>{
             .query(stringsql);
         return  ;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         throw err;
     }
 }

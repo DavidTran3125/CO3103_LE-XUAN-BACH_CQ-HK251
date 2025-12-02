@@ -1,4 +1,4 @@
-const {handleSqlError} = require("../middlewares/handleErrorSQL")
+// const {handleSqlError} = require("../middlewares/handleErrorSQL")
 const chatmodel=require('../models/chatModel')
 
 exports.handel_message = (io,raw_message) =>{

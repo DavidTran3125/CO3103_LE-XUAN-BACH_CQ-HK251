@@ -12,9 +12,9 @@ async function startServer() {
     const server = app.listen(PORT, '0.0.0.0', () => {
         console.log(` Server running on port ${PORT}`);
     });
-     chatserver.listen(chatPORT, '0.0.0.0' ,() =>{
+    chatserver.listen(chatPORT, '0.0.0.0' ,() =>{
         console.log(` chatServer running on port ${chatPORT}`);
-    })
+    });
 
     // ✅ Ctrl + C
     process.on('SIGINT', async () => {

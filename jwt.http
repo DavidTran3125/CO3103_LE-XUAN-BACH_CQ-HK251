@@ -79,3 +79,17 @@ Authorization: Bearer {{token}}
 ###
 DELETE http://localhost:3000/users/{{id}}/weaknesses/d
 Authorization: Bearer {{token}}
+
+###
+POST http://localhost:3000/create_group
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "group_name": "nhom cua huy",
+    "description": "test",
+    "max_member": "9",
+    "chat_type":"Personal"
+    
+    // chỉ 2 này (Group, Personal)),
+}

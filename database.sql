@@ -55,7 +55,7 @@ GO
 ------------------------------------------------------------
 CREATE TABLE dbo.User_Profile (
     User_ID INT IDENTITY(1,1) PRIMARY KEY,
-    Username VARCHAR(15) NOT NULL UNIQUE,
+    Username VARCHAR(50) NOT NULL UNIQUE,
     Password_hash VARCHAR(255) NOT NULL,
     Bio NVARCHAR(500) NULL,
     Created_at DATETIME2(0) NOT NULL DEFAULT SYSDATETIME(),
@@ -68,10 +68,12 @@ CREATE TABLE dbo.LearningGroup (
     ID INT IDENTITY(1,1) PRIMARY KEY,
     Group_Name NVARCHAR(100) NOT NULL DEFAULT N'Group',
     Description NVARCHAR(500) NULL,
-    Max_Members INT NOT NULL DEFAULT 6,
+    Max_Members INT NOT NULL DEFAULT 10,
+    Chat_Type NVARCHAR(20) NOT NULL DEFAULT N'Personal',
     Created_by INT NULL, -- do NOT cascade delete from user to group (avoid multi-path)
     Created_at DATETIME2(0) NOT NULL DEFAULT SYSDATETIME(),
     CONSTRAINT CHK_MaxMembers CHECK (Max_Members BETWEEN 2 AND 50),
+    CONSTRAINT CHK_ChatType CHECK (Chat_Type IN (N'Group', N'Personal')),
     CONSTRAINT FK_Group_CreatedBy FOREIGN KEY (Created_by)
         REFERENCES dbo.User_Profile(User_ID)
         ON DELETE NO ACTION
