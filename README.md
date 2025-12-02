@@ -1,6 +1,6 @@
 # DO_AN - Authentication API Project
 
-## 🚀 Cách Chạ
+## 🚀 Cách Chạy
 
 ### 1. Cài đặt Dependencies
 ```bash
