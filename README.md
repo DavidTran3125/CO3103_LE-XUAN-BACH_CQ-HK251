@@ -17,5 +17,6 @@ npm start
 ```
 
 Server sẽ chạy trên **http://localhost:3000**
+serverchat **http://localhost:4000**
 
 `mấy cái input, output api nghịch trong file jwt.http`
