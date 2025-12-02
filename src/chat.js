@@ -1,9 +1,9 @@
 
 const http = require("http");
 const { Server } = require("socket.io");
-// const cors = require("cors");
 const express=require('express')
-// const app= require('./src/app')
+
+const chatController = require('./controllers/chatController')
 
 const chatserver=http.createServer(express())
 const io = new Server(chatserver, {
@@ -18,15 +18,22 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("client_server", (msg) => {
-    console.log(msg)
-    io.to(msg.roomId).emit("server_client", msg)
-    // io.emit("chat_all_message", msg);
+    chatController.handel_message(io,msg);
   });
 
-  socket.on("join_room", (roomId) => {
-    socket.join(roomId);  
-    console.log(`${socket.id} joined room ${roomId}`);
+  socket.on("join_room", (list_group ) => {
+    if (!Array.isArray(list_group)) return;
+    // console.log("list_group")
+    list_group.forEach(roomId => {
+      if (roomId) socket.join(roomId);
+      // console.log(`${socket.id} joined room ${roomId}`);
+    });
   });
+  // socket.on("join_room", (list_group ) =>{
+  //   socket.join(list_group);
+  //   console.log(`${socket.id} joined room ${list_group}`);
+  // })
+
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id);

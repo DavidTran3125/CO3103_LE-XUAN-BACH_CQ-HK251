@@ -50,7 +50,7 @@ async function login() {
 // Kết nối socket
 function connectSocket() {
   if (!token) return alert("Login first!");
-  let groupid=2
+  let groupid=[2]
   // Nếu muốn gửi token lên socket (auth)
   socket = io("http://localhost:4000", {
     auth: { token } 
@@ -78,7 +78,8 @@ function sendMessage() {
   if (!message) return;
 
   // Gửi lên server
-  socket.emit("client_server", { username: username.value,message: message, roomId:2});
+  ////////   gropuid,userid,contnet
+  socket.emit("client_server", {userid:1 ,username: username.value,message: message, roomId:2});///////////////////////
 
   // Xóa input
   msgInput.value = "";

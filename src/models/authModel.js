@@ -46,3 +46,20 @@ exports.add_user = async (name,pass) =>{
         throw err
     }
 }
+
+exports.get_groupid = async (userid) => {
+    const pool = await connectDB();
+    try {
+        const stringsql=`
+            select Group_ID
+            from Membership
+            where @userid=User_ID`
+        const listid= await pool.request()
+            .input('userid',sql.Int,userid)
+            .query(stringsql);
+        return listid.recordset;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}

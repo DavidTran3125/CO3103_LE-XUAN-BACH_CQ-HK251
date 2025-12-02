@@ -18,7 +18,7 @@ exports.login = async (req,res)=>{
         // if (!pass) return res.status(401).json({ message: 'Invalid username or password' });
 
         const token = jwt.sign({ username: user.Username, id: user.User_ID}, SECRET, { expiresIn: '30m' });
-
+        listgroup= await authmodel.get_groupid(user.User_ID);
         res.json(
         {
             Status:"success",
@@ -27,7 +27,8 @@ exports.login = async (req,res)=>{
             user:{
                 userID :user.User_ID,
                 username: user.Username
-            }
+            },
+            list_group: listgroup.map(i => i.Group_ID)
         });
     } catch (err) {
         handleSqlError(err,res);
