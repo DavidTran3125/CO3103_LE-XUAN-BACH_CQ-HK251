@@ -4,7 +4,7 @@ const {connectDB,sql}= require('../config/db')
 
 exports.save_message = async (raw_message) =>{
     const pool =await connectDB();
-    const {roomId,userid,message}=raw_message;
+    const {roomId,senderId,message}=raw_message;
     try {
         const stringsql=`
             insert into Message(Group_ID,User_ID,Content) 
@@ -12,7 +12,7 @@ exports.save_message = async (raw_message) =>{
         
         await pool.request()
             .input('gropuid',sql.Int,roomId)
-            .input('userid',sql.Int,userid)
+            .input('userid',sql.Int,senderId)
             .input('contnet',sql.NVarChar,message)
             .query(stringsql);
         return;
@@ -42,9 +42,11 @@ exports.get_list_message = async (groupid, page = 1, pageSize = 20) => {
         const offset = (page - 1) * pageSize;
 
         const stringsql = `
-            SELECT *
-            FROM Message
-            WHERE Group_ID = @groupid
+            SELECT m.*,u.Username as username
+            FROM 
+            (
+               select * from Message WHERE Group_ID = @groupid
+            ) m join User_Profile u on u.User_ID = m.User_ID
             ORDER BY Created_at DESC      -- tin nhắn mới nhất lên đầu
             OFFSET @offset ROWS
             FETCH NEXT @limit ROWS ONLY
