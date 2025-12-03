@@ -11,6 +11,7 @@ import Profile from "./pages/Profile.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
 import Groups from "./pages/Groups.jsx";
 import Chat from "./pages/Chat.jsx";
+import Matching from "./pages/Matching.jsx";
 
 const routers = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ const routers = createBrowserRouter([
     element: (
       <ProtectedRoutes>
         <Chat />
+      </ProtectedRoutes>
+    ),
+  },
+  {
+    path: "/matching",
+    element: (
+      <ProtectedRoutes>
+        <Matching />
       </ProtectedRoutes>
     ),
   },

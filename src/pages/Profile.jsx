@@ -32,7 +32,7 @@ export default function Profile() {
   }, []);
 
   if (!profile) return <p>Loading...</p>;
-  console.log(profile);
+
   return (
     <div className="d-flex" style={{ backgroundColor: "#e8f1f2" }}>
       <Sidebar />

@@ -49,8 +49,12 @@ export default function Groups() {
     }
   };
 
+  useEffect(() => {
+    document.title = "Nhóm | P2P Learning";
+  }, []);
+
   if (loading) return <p>Loading...</p>;
-  console.log(groups);
+
   return (
     <div className="d-flex" style={{ backgroundColor: "#e8f1f2" }}>
       <Sidebar />

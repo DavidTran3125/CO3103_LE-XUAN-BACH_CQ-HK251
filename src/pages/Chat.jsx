@@ -66,7 +66,9 @@ export default function Chat() {
     setInput("");
   };
 
-  console.log(messages);
+  useEffect(() => {
+    document.title = "Chat | P2P Learning";
+  }, []);
 
   return (
     <div className="d-flex" style={{ backgroundColor: "#e8f1f2" }}>
