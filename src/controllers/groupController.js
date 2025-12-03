@@ -211,3 +211,53 @@ exports.remove_member = async (req, res) => {
     handleSqlError(err, res);
   }
 };
+
+exports.leave_group = async (req, res) => {
+  const groupId = parseInt(req.params.groupId, 10);
+  const currentUserId = req.user.id; // lấy từ token
+
+  if (Number.isNaN(groupId)) {
+    return res
+      .status(400)
+      .json({ status: "fail", message: "groupId không hợp lệ" });
+  }
+
+  try {
+    // 1) check group tồn tại
+    const group = await groupmodel.get_group_by_id(groupId);
+    if (!group) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Không tìm thấy group" });
+    }
+
+    // 2) user có đang trong group không
+    const isMember = await groupmodel.is_user_in_group(currentUserId, groupId);
+    if (!isMember) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Bạn không phải thành viên của group này" });
+    }
+
+    // 3) nếu là trưởng nhóm thì chặn không cho rời
+    const role = await groupmodel.get_user_role_in_group(currentUserId, groupId);
+    if (role === 'group_leader') {
+      return res
+        .status(400)
+        .json({
+          status: "fail",
+          message: "Trưởng nhóm không thể rời nhóm. Hãy chuyển quyền hoặc xử lý theo quy định hệ thống."
+        });
+    }
+
+    // 4) thực hiện rời nhóm = xóa khỏi Membership
+    await groupmodel.remove_member(groupId, currentUserId);
+
+    return res.json({
+      status: "success",
+      message: "Rời nhóm thành công"
+    });
+  } catch (err) {
+    handleSqlError(err, res);
+  }
+};
