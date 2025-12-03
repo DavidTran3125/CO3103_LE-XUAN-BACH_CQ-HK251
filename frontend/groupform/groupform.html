@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chọn nhóm mời</title>
+  <link rel="stylesheet" href="groupform.css">
+  <link rel="stylesheet" href="http://localhost:5500/frontend/burger/burger.css">
+</head>
+<body>
+  <!-- Nhúng burger menu -->
+  <burger-sidebar></burger-sidebar>
+     
+  <div class="group-container">
+    <h2>Chọn nhóm mà bạn muốn mời đối phương vào</h2>
+    <div id="groupList" class="group-list"></div>
+    <button id="backBtn" onclick="window.history.back()">Quay lại</button>
+  </div>
+
+  <script src="groupform.js"></script>
+  <script src="http://localhost:5500/frontend/burger/burger.js" defer></script>
+</body>
+</html>

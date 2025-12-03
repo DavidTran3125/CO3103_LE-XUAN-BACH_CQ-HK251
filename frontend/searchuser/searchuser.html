@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tìm kiếm người dùng theo điểm mạnh/yếu</title>
+  <link rel="stylesheet" href="searchuser.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Tìm kiếm theo điểm mạnh / điểm yếu</h2>
+
+    <!-- Điểm mạnh -->
+    <h3>Điểm mạnh</h3>
+    <div class="grid">
+      <!-- Tổng quan -->
+      <div class="column">
+        <h4>Tổng quan</h4>
+        <div class="item strength">Chăm chỉ</div>
+        <div class="item strength">Kiên nhẫn</div>
+        <div class="item strength">Có trách nhiệm</div>
+        <div class="item strength">Tự tin</div>
+        <div class="item strength">Tham vọng</div>
+        <div class="item strength">Tỉ mỉ</div>
+        <div class="item strength">Đáng tin cậy</div>
+        <div class="item strength">Chủ động</div>
+        <div class="item strength">Kiên định</div>
+      </div>
+
+      <!-- Kỹ năng -->
+      <div class="column">
+        <h4>Kỹ năng</h4>
+        <div class="item strength">Giao tiếp tốt</div>
+        <div class="item strength">Tư duy sáng tạo</div>
+        <div class="item strength">Làm việc nhóm</div>
+        <div class="item strength">Giải quyết vấn đề</div>
+        <div class="item strength">Khả năng lãnh đạo</div>
+        <div class="item strength">Tư duy phản biện</div>
+        <div class="item strength">Quản lý thời gian</div>
+        <div class="item strength">Khả năng thuyết trình</div>
+        <div class="item strength">Đàm phán hiệu quả</div>
+      </div>
+
+      <!-- Môn học -->
+      <div class="column">
+        <h4>Môn học</h4>
+        <div class="item strength">Toán</div>
+        <div class="item strength">Vật lý</div>
+        <div class="item strength">Hóa học</div>
+        <div class="item strength">Ngữ văn</div>
+        <div class="item strength">Tiếng Anh</div>
+        <div class="item strength">Tin học văn phòng</div>
+        <div class="item strength">Lập trình</div>
+        <div class="item strength">Thiết kế đồ họa</div>
+        <div class="item strength">Phân tích dữ liệu</div>
+        <div class="item strength">Nghiên cứu khoa học</div>
+      </div>
+    </div>
+
+    <!-- Điểm yếu -->
+    <h3>Điểm yếu</h3>
+    <div class="grid">
+      <!-- Tổng quan -->
+      <div class="column">
+        <h4>Tổng quan</h4>
+        <div class="item weakness">Hay trì hoãn</div>
+        <div class="item weakness">Thiếu kiên nhẫn</div>
+        <div class="item weakness">Thiếu tự tin</div>
+        <div class="item weakness">Dễ mất tập trung</div>
+        <div class="item weakness">Dễ nản lòng</div>
+        <div class="item weakness">Quá cầu toàn</div>
+        <div class="item weakness">Khó kiểm soát cảm xúc</div>
+        <div class="item weakness">Thiếu quyết đoán</div>
+        <div class="item weakness">Ngại thử thách</div>
+      </div>
+
+      <!-- Kỹ năng -->
+      <div class="column">
+        <h4>Kỹ năng</h4>
+        <div class="item weakness">Ngại giao tiếp</div>
+        <div class="item weakness">Khó làm việc nhóm</div>
+        <div class="item weakness">Thiếu sáng tạo</div>
+        <div class="item weakness">Khó giải quyết vấn đề</div>
+        <div class="item weakness">Khó quản lý thời gian</div>
+        <div class="item weakness">Thiếu kỹ năng lãnh đạo</div>
+        <div class="item weakness">Ngại thuyết trình</div>
+        <div class="item weakness">Khả năng đàm phán kém</div>
+        <div class="item weakness">Thiếu tư duy phản biện</div>
+      </div>
+
+      <!-- Môn học -->
+      <div class="column">
+        <h4>Môn học</h4>
+        <div class="item weakness">Toán</div>
+        <div class="item weakness">Vật lý</div>
+        <div class="item weakness">Hóa học</div>
+        <div class="item weakness">Ngữ văn</div>
+        <div class="item weakness">Tiếng Anh</div>
+        <div class="item weakness">Thiếu kỹ năng tin học</div>
+        <div class="item weakness">Khó lập trình</div>
+        <div class="item weakness">Khả năng thiết kế yếu</div>
+        <div class="item weakness">Khó phân tích dữ liệu</div>
+        <div class="item weakness">Thiếu kỹ năng nghiên cứu</div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="searchBtn">Tìm kiếm</button>
+      <button id="backBtn" onclick="window.history.back()">Quay lại</button>
+    </div>
+
+    <div id="searchResult" class="result-box"></div>
+  </div>
+
+  <script src="searchuser.js"></script>
+</body>
+</html>

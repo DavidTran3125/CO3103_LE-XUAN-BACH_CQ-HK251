@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng kí</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <div class="register-container">
+    <img src="../asset/dp2p.png" alt="Logo" class="logo">
+    <h2>Đăng kí</h2>
+    <form id="registerForm">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="text" name="first_name" placeholder="First name" required>
+      <input type="text" name="last_name" placeholder="Last name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="date" name="Dob" placeholder="Date of Birth" required>
+      <input type="password" name="password" placeholder="Mật khẩu" required>   
+      <button type="submit">Đăng kí</button>
+    </form>
+    <p class="login-link">Đã có tài khoản? <a href="../login/login.html">Đăng nhập</a></p>
+  </div>
+
+  <div id="notification" class="notification hidden">
+    <p id="notificationMessage"></p>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+</html>

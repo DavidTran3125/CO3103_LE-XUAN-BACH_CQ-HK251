@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  background: #fff;
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 1000px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.weaknesses-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.weakness-column {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.weakness-column h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #34495e;
+}
+
+.weakness-item {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  background: #ecf0f1;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.weakness-item:hover {
+  background: #dfe6e9;
+}
+
+.weakness-item.selected {
+  background: #e74c3c;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(231,76,60,0.7);
+}
+
+#saveBtn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 25px;
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#saveBtn:hover {
+  background: #219150;
+}
+
+#backBtn {
+  background-color: #ea524a;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#backBtn:hover {
+  background-color: #636e72;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi tiết nhóm</title>
+  <link rel="stylesheet" href="http://localhost:5500/frontend/burger/burger.css">
+  <link rel="stylesheet" href="groupdetail.css" />
+</head>
+<body>
+
+  <!-- Nhúng burger menu -->
+  <burger-sidebar></burger-sidebar>
+
+  <div class="group-container">
+    <h2>Thành viên nhóm</h2>
+    <div class="group-actions">
+      <button id="addMemberBtn">Thêm thành viên</button>
+      <button id="deleteGroupBtn">Xóa nhóm</button>
+      <button id="backBtn" onclick="window.history.back()">Quay lại</button>
+    </div>
+    <div id="memberList" class="member-list"></div>
+  </div>
+
+  <script src="groupdetail.js"></script>
+  <script src="http://localhost:5500/frontend/burger/burger.js" defer></script>
+</body>

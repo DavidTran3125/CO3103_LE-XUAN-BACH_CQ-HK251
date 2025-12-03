@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hồ sơ cá nhân</title>
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="http://localhost:5500/frontend/burger/burger.css">
+</head>
+<body>
+  <!-- Nhúng burger menu -->
+  <burger-sidebar></burger-sidebar>
+
+  <div class="main-content">
+    <div class="header">
+      <h1>Hồ sơ cá nhân</h1>
+    </div>
+
+    <div class="profile-card">
+      <div class="info-left">
+        <p><strong>Mã id:</strong> <span id="id"></span></p>
+        <p><strong>Họ tên:</strong> <span id="fullName"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Ngày sinh:</strong> <span id="dob"></span></p>
+
+        <div class="field-group">
+          <strong>Thế mạnh:</strong>
+          <div id="strengths" class="tag-list"></div>
+          <button class="btn-edit" onclick="window.location.href='../updatestrength/updatestrength.html'">Chỉnh</button>
+        </div>
+
+        <div class="field-group">
+          <strong>Điểm yếu:</strong>
+          <div id="weaknesses" class="tag-list"></div>
+          <button class="btn-edit" onclick="window.location.href='../updateweakness/updateweakness.html'">Chỉnh</button>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h3>Giới thiệu</h3>
+        <p id="about"></p>
+        <button class="btn-edit" id="editAbout" onclick="window.location.href='../updateabout/updateabout.html'">Chỉnh</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
+  <script src="http://localhost:5500/frontend/burger/burger.js" defer></script>
+</body>
+</html>

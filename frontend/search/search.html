@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tìm kiếm</title>
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="http://localhost:5500/frontend/burger/burger.css">
+</head>
+<body>
+     <!-- Nhúng burger menu -->
+  <burger-sidebar></burger-sidebar>
+
+  <div class="search-container">
+    <h2>Trang Tìm kiếm</h2>
+
+    <!-- Thanh tìm kiếm theo ID -->
+    <div class="search-box">
+      <input type="text" id="userIdInput" placeholder="Nhập ID người dùng...">
+      <button id="searchBtn">Xác nhận</button>
+    </div>
+
+    <!-- Các nút tìm kiếm khác -->
+    <div class="search-actions">
+      <button id="searchWeaknessBtn" onclick="window.location.href = '../searchuser/searchuser.html';" >Tìm kiếm theo điểm mạnh/yếu</button>
+      <button id="autoSearchBtn">AI searching</button>
+    </div>
+
+    <!-- Kết quả -->
+    <div id="searchResult" class="result-box"></div>
+  </div>
+
+  <script src="search.js"></script>
+  <script src="http://localhost:5500/frontend/burger/burger.js" defer></script>
+</body>
+</html>

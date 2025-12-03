@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi tiết yêu cầu nhóm</title>
+  <link rel="stylesheet" href="viewgrequest.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Chi tiết yêu cầu gia nhập nhóm</h2>
+
+    <div class="info-box">
+      <p><strong>Người gửi:</strong> <span id="senderName"></span></p>
+      <p><strong>Tên nhóm:</strong> <span id="groupName"></span></p>
+      <p><strong>Mã nhóm:</strong> <span id="groupCode"></span></p>
+      <p><strong>Ngày gửi yêu cầu:</strong> <span id="sentAt"></span></p>
+    </div>
+
+    <div class="actions">
+      <button id="acceptBtn" class="accept">Đồng ý</button>
+      <button id="rejectBtn" class="reject">Từ chối</button>
+      <button onclick="window.history.back()">Quay lại</button>
+    </div>
+  </div>
+
+  <script src="viewgrequest.js"></script>
+</body>
+</html>
