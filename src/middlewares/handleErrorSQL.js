@@ -1,4 +1,5 @@
 exports.handleSqlError =(err, res) =>{
+  console.error(err);
   console.error("SQL ERROR:", err.number, err.message);
 
   switch (err.number) {

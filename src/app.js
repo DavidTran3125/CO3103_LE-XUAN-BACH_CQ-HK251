@@ -14,5 +14,6 @@ app.get('',(req,res)=>{
 require('./routers/authRouter')(app);
 require('./routers/userRouter')(app);
 require('./routers/groupRouter')(app);
+require('./routers/chatRouter')(app);
 
 module.exports = app

@@ -20,3 +20,44 @@ exports.save_message = async (raw_message) =>{
         throw err;
     }
 }
+
+// exports.get_list_message = async (gropuid)=>{
+//     try {
+//         const pool =await connectDB();
+//         const stringsql=`
+//             select* from Message where Group_ID= @groupid`;
+//         const result= await pool.request()
+//             .input('groupid',sql.Int,gropuid)
+//             .query(stringsql);
+//         return result.recordset;
+//     } catch (err) {
+//         throw err;
+//     }
+// }
+
+exports.get_list_message = async (groupid, page = 1, pageSize = 20) => {
+    try {
+        const pool = await connectDB();
+
+        const offset = (page - 1) * pageSize;
+
+        const stringsql = `
+            SELECT *
+            FROM Message
+            WHERE Group_ID = @groupid
+            ORDER BY Created_at DESC      -- tin nhắn mới nhất lên đầu
+            OFFSET @offset ROWS
+            FETCH NEXT @limit ROWS ONLY
+        `;
+
+        const result = await pool.request()
+            .input('groupid', sql.Int, groupid)
+            .input('offset', sql.Int, offset)
+            .input('limit', sql.Int, pageSize)
+            .query(stringsql);
+
+        return result.recordset;
+    } catch (err) {
+        throw err;
+    }
+};
