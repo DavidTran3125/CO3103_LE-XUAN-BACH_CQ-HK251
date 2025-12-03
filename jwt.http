@@ -101,3 +101,13 @@ Authorization: Bearer {{token}}
 ###
 get http://localhost:3000/groups/1/messages/1
 Authorization: Bearer {{token}}
+
+###
+http://localhost:3000/matching?userid=1&username=huy&strength=1&weak=0
+
+###
+GET http://localhost:3000/matching?username=c&weak=h
+Authorization: Bearer {{token}}
+###
+GET http://localhost:3000/users/{{id}}/weaknesses
+Authorization: Bearer {{token}}
