@@ -6,4 +6,5 @@ module.exports = (app) =>{
     app.get('/groups', verify_token,groupcontroller.get_list_group);
     app.get('/groups/:groupId', verify_token, groupcontroller.get_group_detail);
     app.post('/groups/:groupId/invite', verify_token, groupcontroller.invite_member);
+    app.delete('/groups/:groupId/members/:userId', verify_token, groupcontroller.remove_member);
 }

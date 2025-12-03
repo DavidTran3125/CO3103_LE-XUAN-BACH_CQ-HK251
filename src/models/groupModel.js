@@ -190,3 +190,39 @@ exports.count_group_members = async (groupId) => {
     throw err;
   }
 };
+
+exports.get_user_role_in_group = async (userId, groupId) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `
+      SELECT Role
+      FROM Membership
+      WHERE User_ID = @userId AND Group_ID = @groupId
+    `;
+    const result = await pool.request()
+      .input('userId', sql.Int, userId)
+      .input('groupId', sql.Int, groupId)
+      .query(stringsql);
+
+    return result.recordset[0]?.Role || null;
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.remove_member = async (groupId, userId) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `
+      DELETE FROM Membership
+      WHERE Group_ID = @groupId AND User_ID = @userId
+    `;
+    await pool.request()
+      .input('groupId', sql.Int, groupId)
+      .input('userId', sql.Int, userId)
+      .query(stringsql);
+    return;
+  } catch (err) {
+    throw err;
+  }
+};

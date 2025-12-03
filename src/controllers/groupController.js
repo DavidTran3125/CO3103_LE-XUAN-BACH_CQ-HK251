@@ -148,3 +148,66 @@ exports.invite_member = async (req, res) => {
     handleSqlError(err, res);
   }
 };
+
+exports.remove_member = async (req, res) => {
+  const groupId = parseInt(req.params.groupId, 10);
+  const userId = parseInt(req.params.userId, 10);
+  const currentUserId = req.user.id; // từ token
+
+  if (Number.isNaN(groupId) || Number.isNaN(userId)) {
+    return res
+      .status(400)
+      .json({ status: "fail", message: "groupId hoặc userId không hợp lệ" });
+  }
+
+  try {
+    // 1) check group tồn tại
+    const group = await groupmodel.get_group_by_id(groupId);
+    if (!group) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Không tìm thấy group" });
+    }
+
+    // 2) người gọi API phải là member của group
+    const callerIsMember = await groupmodel.is_user_in_group(currentUserId, groupId);
+    if (!callerIsMember) {
+      return res
+        .status(403)
+        .json({ status: "fail", message: "Bạn không phải thành viên của group này" });
+    }
+
+    // 3) người gọi phải là trưởng nhóm
+    const callerRole = await groupmodel.get_user_role_in_group(currentUserId, groupId);
+    if (callerRole !== 'group_leader') {
+      return res
+        .status(403)
+        .json({ status: "fail", message: "Chỉ trưởng nhóm mới được xóa thành viên" });
+    }
+
+    // 4) không cho tự xóa chính mình (optional – nếu muốn cho xóa thì bỏ block này)
+    if (currentUserId === userId) {
+      return res
+        .status(400)
+        .json({ status: "fail", message: "Trưởng nhóm không thể tự xóa chính mình" });
+    }
+
+    // 5) check user bị xóa có đang là member không
+    const targetIsMember = await groupmodel.is_user_in_group(userId, groupId);
+    if (!targetIsMember) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "User không phải thành viên trong group" });
+    }
+
+    // 6) thực hiện xóa
+    await groupmodel.remove_member(groupId, userId);
+
+    return res.json({
+      status: "success",
+      message: "Xóa thành viên thành công",
+    });
+  } catch (err) {
+    handleSqlError(err, res);
+  }
+};
