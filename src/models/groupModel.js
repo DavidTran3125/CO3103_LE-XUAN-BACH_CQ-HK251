@@ -60,12 +60,14 @@ exports.get_group_by_id = async (groupId) => {
     try {
         const pool = await connectDB();
         const query = `
-            SELECT 
-                ID         AS groupId,
-                Group_Name AS groupName,
-                Created_at AS createdAt
-            FROM LearningGroup
-            WHERE ID = @groupId
+        SELECT 
+            ID         AS groupId,
+            Group_Name AS groupName,
+            Max_Members AS maxMembers,
+            Chat_Type  AS chatType,
+            Created_at AS createdAt
+        FROM LearningGroup
+        WHERE ID = @groupId
         `;
         const result = await pool.request()
             .input('groupId', sql.Int, groupId)
@@ -98,4 +100,93 @@ exports.get_group_members = async (groupId) => {
     } catch (err) {
         throw err;
     }
+};
+
+exports.user_exists = async (userId) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `SELECT 1 AS ok FROM User_Profile WHERE User_ID = @userId`;
+    const result = await pool.request()
+      .input('userId', sql.Int, userId)
+      .query(stringsql);
+
+    return result.recordset.length > 0;
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.is_user_in_group = async (userId, groupId) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `
+      SELECT 1 AS ok
+      FROM Membership
+      WHERE User_ID = @userId AND Group_ID = @groupId
+    `;
+    const result = await pool.request()
+      .input('userId', sql.Int, userId)
+      .input('groupId', sql.Int, groupId)
+      .query(stringsql);
+
+    return result.recordset.length > 0;
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.get_pending_invite = async (groupId, toUserId) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `
+      SELECT TOP 1 Invite_ID
+      FROM Group_Invite
+      WHERE Group_ID = @groupId
+        AND To_User_ID = @toUserId
+        AND Status = 'pending'
+      ORDER BY Created_at DESC
+    `;
+    const result = await pool.request()
+      .input('groupId', sql.Int, groupId)
+      .input('toUserId', sql.Int, toUserId)
+      .query(stringsql);
+
+    return result.recordset[0]?.Invite_ID || null;
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.create_group_invite = async ({ groupId, fromUserId, toUserId }) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `
+      INSERT INTO Group_Invite (Group_ID, From_User_ID, To_User_ID, Status)
+      OUTPUT INSERTED.Invite_ID
+      VALUES (@groupId, @fromUserId, @toUserId, 'pending')
+    `;
+    const result = await pool.request()
+      .input('groupId', sql.Int, groupId)
+      .input('fromUserId', sql.Int, fromUserId)
+      .input('toUserId', sql.Int, toUserId)
+      .query(stringsql);
+
+    return result.recordset[0]?.Invite_ID;
+  } catch (err) {
+    throw err;
+  }
+};
+
+exports.count_group_members = async (groupId) => {
+  try {
+    const pool = await connectDB();
+    const stringsql = `SELECT COUNT(*) AS cnt FROM Membership WHERE Group_ID = @groupId`;
+    const result = await pool.request()
+      .input('groupId', sql.Int, groupId)
+      .query(stringsql);
+
+    return result.recordset[0]?.cnt ?? 0;
+  } catch (err) {
+    throw err;
+  }
 };

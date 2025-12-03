@@ -79,3 +79,72 @@ exports.get_group_detail = async (req, res) => {
     handleSqlError(err, res);
   }
 };
+
+exports.invite_member = async (req, res) => {
+  try {
+    const fromUserId = req.user.id;
+    const groupId = parseInt(req.params.groupId, 10);
+    const toUserId = parseInt(req.body.userId, 10);
+
+    if (Number.isNaN(groupId)) {
+      return res.status(400).json({ status: "fail", message: "groupId không hợp lệ" });
+    }
+    if (Number.isNaN(toUserId)) {
+      return res.status(400).json({ status: "fail", message: "userId không hợp lệ" });
+    }
+    if (fromUserId === toUserId) {
+      return res.status(400).json({ status: "fail", message: "Không thể tự mời chính mình" });
+    }
+
+    // group tồn tại?
+    const group = await groupmodel.get_group_by_id(groupId);
+    if (!group) {
+      return res.status(404).json({ status: "fail", message: "Không tìm thấy group" });
+    }
+
+    const inviterIsMember = await groupmodel.is_user_in_group(fromUserId, groupId);
+    if (!inviterIsMember) {
+    return res.status(403).json({ status: "fail", message: "Bạn không phải thành viên của group này" });
+    }
+
+    // user được mời tồn tại?
+    const userOk = await groupmodel.user_exists(toUserId);
+    if (!userOk) {
+      return res.status(404).json({ status: "fail", message: "Không tìm thấy user" });
+    }
+
+    // đã là member chưa?
+    const alreadyMember = await groupmodel.is_user_in_group(toUserId, groupId);
+    if (alreadyMember) {
+      return res.status(409).json({ status: "fail", message: "User đã là thành viên của group" });
+    }
+
+    const currentCount = await groupmodel.count_group_members(groupId);
+    if (currentCount >= group.maxMembers) {
+    return res.status(409).json({
+        status: "fail",
+        message: "Group đã đủ số lượng thành viên"
+    });
+    }
+
+    // đã có invite pending chưa?
+    const pending = await groupmodel.get_pending_invite(groupId, toUserId);
+    if (pending) {
+      return res.status(409).json({ status: "fail", message: "Đã có lời mời pending cho user này" });
+    }
+
+    // tạo invite
+    const inviteId = await groupmodel.create_group_invite({
+      groupId,
+      fromUserId,
+      toUserId
+    });
+
+    return res.json({
+      status: "success",
+      data: { inviteId }
+    });
+  } catch (err) {
+    handleSqlError(err, res);
+  }
+};
