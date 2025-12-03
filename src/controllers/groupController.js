@@ -261,3 +261,50 @@ exports.leave_group = async (req, res) => {
     handleSqlError(err, res);
   }
 };
+
+exports.delete_group = async (req, res) => {
+  const groupId = parseInt(req.params.groupId, 10);
+  const currentUserId = req.user.id; // lấy từ token
+
+  if (Number.isNaN(groupId)) {
+    return res
+      .status(400)
+      .json({ status: "fail", message: "groupId không hợp lệ" });
+  }
+
+  try {
+    // 1) check group tồn tại
+    const group = await groupmodel.get_group_by_id(groupId);
+    if (!group) {
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Không tìm thấy group" });
+    }
+
+    // 2) user gọi API phải là thành viên group
+    const isMember = await groupmodel.is_user_in_group(currentUserId, groupId);
+    if (!isMember) {
+      return res
+        .status(403)
+        .json({ status: "fail", message: "Bạn không phải thành viên của group này" });
+    }
+
+    // 3) phải là trưởng nhóm
+    const role = await groupmodel.get_user_role_in_group(currentUserId, groupId);
+    if (role !== 'group_leader') {
+      return res
+        .status(403)
+        .json({ status: "fail", message: "Chỉ trưởng nhóm mới được xóa nhóm" });
+    }
+
+    // 4) thực hiện xóa nhóm
+    await groupmodel.delete_group(groupId);
+
+    return res.json({
+      status: "success",
+      message: "Xóa nhóm thành công"
+    });
+  } catch (err) {
+    handleSqlError(err, res);
+  }
+};

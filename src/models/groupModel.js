@@ -226,3 +226,20 @@ exports.remove_member = async (groupId, userId) => {
     throw err;
   }
 };
+
+exports.delete_group = async (groupId) => {
+  try {
+    const pool = await connectDB();
+
+    const deleteGroupSql = `
+      DELETE FROM LearningGroup WHERE ID = @groupId
+    `;
+    await pool.request()
+      .input('groupId', sql.Int, groupId)
+      .query(deleteGroupSql);
+
+    return;
+  } catch (err) {
+    throw err;
+  }
+};
