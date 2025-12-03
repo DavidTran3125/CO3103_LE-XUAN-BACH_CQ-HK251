@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(to right, #74ebd5, #ACB6E5);
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.group-container {
+  width: 1000px;
+  background: white;
+  border-radius: 12px;
+  margin-left: 220px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.group-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.group-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ecf0f1;
+  padding: 16px 20px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.group-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.group-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-info span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.group-info small {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.group-card button {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.group-card button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+#backBtn {
+  margin-top: 25px;
+  padding: 10px 18px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #95a5a6;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#backBtn:hover {
+  background-color: #7f8c8d;
+  transform: translateY(-2px);
+}

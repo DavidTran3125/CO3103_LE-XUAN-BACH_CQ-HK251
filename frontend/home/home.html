@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang chủ</title>
+  <link rel="stylesheet" href="http://localhost:5500/frontend/burger/burger.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <!-- Nhúng burger menu -->
+  <burger-sidebar></burger-sidebar>
+
+  <!-- Nội dung chính -->
+  <main class="main-content">
+    <div class="header">
+      <h1 id="welcomeMessage">Chào mừng trở lại</h1>
+      <div class="header-icons">
+        <img id="notificationIcon" src="../asset/notification.svg" alt="Thông báo" class="header-icon">
+        <img src="../asset/chat2.png" alt="Tin nhắn" class="header-icon">
+      </div>
+    </div>
+
+    <img src="../asset/slbk.jpg" alt="Trường Đại học Bách Khoa" class="main-image">
+
+    <div class="programs">
+      <div class="card">
+        <h3>Diploma in English</h3>
+        <p>Mã: OXF/ENG/01</p>
+      </div>
+      <div class="card">
+        <h3>Diploma in IT</h3>
+        <p>Mã: OXF/DIT/01</p>
+      </div>
+      <div class="card">
+        <h3>HND in Computing</h3>
+        <p>Mã: OXF/HND/01</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">Thống kê bạn học: <strong id="friendCount">0</strong></div>
+      <div class="stat-box">Thống kê nhóm: <strong id="groupCount">0</strong></div>
+      <div class="stat-box">Thông báo: <strong id="notificationCount">0</strong></div>
+    </div>
+  </main>
+
+  <!-- Khung thông báo -->
+  <div id="notificationPanel" class="notification-panel hidden"></div>
+
+  <script src="http://localhost:5500/frontend/burger/burger.js" defer></script>
+  <script src="home.js"></script>
+</body>
+</html>

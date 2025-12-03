@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #74ebd5, #ACB6E5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.search-container {
+  background: #fff;
+  margin-top: 60px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 90%;
+  margin-left: 200px;
+  max-width: 1000px;
+  text-align: center;
+  animation: slideUp 0.3s ease-out;
+}
+
+.search-container h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  animation: slideUp 0.5s ease-out;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: slideUp 0.6s ease-out;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.search-box button {
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+.search-box button:hover {
+  background: #2980b9;
+}
+
+.search-actions {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  margin-bottom: 20px;
+  animation: slideUp 0.7s ease-out;
+}
+
+.search-actions button {
+  padding: 10px 18px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+.search-actions button:hover {
+  background: #219150;
+}
+
+.result-box {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 15px;
+  color: #2c3e50;
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  animation: slideUp 0.5s ease-out;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.user-info {
+  display: flex;
+  gap: 150px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.detail-btn {
+  padding: 8px 14px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.detail-btn:hover {
+  background-color: #2980b9;
+}

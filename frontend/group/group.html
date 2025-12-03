@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trang Nhóm</title>
+  <link rel="stylesheet" href="group.css">
+  <link rel="stylesheet" href="http://localhost:5500/frontend/burger/burger.css">
+</head>
+<body>
+  <!-- Nhúng burger menu -->
+  <burger-sidebar></burger-sidebar>
+
+  <div class="search-container">
+    <h2>Tìm Nhóm</h2>
+
+    <!-- Thanh tìm kiếm theo mã nhóm -->
+    <div class="search-box">
+      <input type="text" id="groupCodeInput" placeholder="Nhập mã nhóm...">
+      <button id="searchGroupBtn">Xác nhận</button>
+    </div>
+
+    <!-- Các nút nhóm -->
+    <div class="search-actions">
+      <button id="createGroupBtn" onclick="window.location.href = '../creategroup/creategroup.html';">Tạo nhóm</button>
+      <button id="myGroupBtn" onclick="window.location.href = '../mygroup/mygroup.html';">Nhóm của tôi</button>
+    </div>
+
+    <!-- Kết quả -->
+    <div id="searchResult" class="result-box"></div>
+  </div>
+
+  <script src="group.js"></script>
+  <script src="http://localhost:5500/frontend/burger/burger.js" defer></script>
+</body>
+</html>
