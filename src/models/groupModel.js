@@ -55,3 +55,47 @@ exports.get_list_group = async (userid) => {
         throw err;
     }
 }
+
+exports.get_group_by_id = async (groupId) => {
+    try {
+        const pool = await connectDB();
+        const query = `
+            SELECT 
+                ID         AS groupId,
+                Group_Name AS groupName,
+                Created_at AS createdAt
+            FROM LearningGroup
+            WHERE ID = @groupId
+        `;
+        const result = await pool.request()
+            .input('groupId', sql.Int, groupId)
+            .query(query);
+
+        return result.recordset[0] || null;
+    } catch (err) {
+        throw err;
+    }
+};
+
+exports.get_group_members = async (groupId) => {
+    try {
+        const pool = await connectDB();
+        const query = `
+            SELECT 
+                u.User_ID  AS userId,
+                u.Username AS username,
+                m.Role     AS role
+            FROM Membership m
+            JOIN User_Profile u ON u.User_ID = m.User_ID
+            WHERE m.Group_ID = @groupId
+            ORDER BY CASE WHEN m.Role = 'group_leader' THEN 0 ELSE 1 END, u.Username
+        `;
+        const result = await pool.request()
+            .input('groupId', sql.Int, groupId)
+            .query(query);
+
+        return result.recordset;
+    } catch (err) {
+        throw err;
+    }
+};

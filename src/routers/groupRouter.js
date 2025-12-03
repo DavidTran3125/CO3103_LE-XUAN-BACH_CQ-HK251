@@ -4,4 +4,5 @@ const {verify_token} =require('../middlewares/authMiddleware')
 module.exports = (app) =>{
     app.post('/groups', verify_token,groupcontroller.create_group);
     app.get('/groups', verify_token,groupcontroller.get_list_group);
+    app.get('/groups/:groupId', verify_token, groupcontroller.get_group_detail);
 }
